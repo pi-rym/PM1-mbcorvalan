@@ -1,0 +1,428 @@
+/*Rest css */
+@import url('./reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* Base font-size set to 10px to simplify REM calculations: 1rem = 10px */
+html {
+	font-size: 10px;
+}
+
+/*Default styles*/
+:root {
+	--background-color: rgb(255, 255, 255);
+	--text-color: rgb(26, 26, 32);
+}
+
+/*Styles for  dark mode*/
+.dark-theme {
+	--background-color: rgb(26, 26, 32);
+	--text-color: rgb(255, 255, 255);
+	--border-color: rgb(255, 255, 255);
+}
+
+body {
+	background-color: var(--background-color);
+}
+
+/*Header*/
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 2rem 4rem;
+	background-color: var(--background-color);
+}
+
+header h1 {
+	font-size: 2.2rem;
+	color: var(--text-color);
+	font-family: 'Bebas Neue', sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+/*Nav*/
+nav {
+	display: flex;
+	justify-content: end;
+	padding: 2rem 4rem;
+	gap: 2rem;
+	color: var(--text-color);
+}
+
+nav ul {
+	display: flex;
+	gap: 2rem;
+}
+
+nav ul li a {
+	color: inherit;
+	text-decoration: none;
+	background-color: transparent;
+	-webkit-text-decoration-skip: objects;
+	list-style: none;
+	font-size: 1.4rem;
+	font-family: 'Open Sans', sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
+	font-variation-settings: 'wdth' 100;
+}
+
+nav ul li a:visited {
+	color: inherit;
+}
+
+/*Main*/
+main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 4rem;
+	background-color: var(--background-color);
+}
+
+.about-me-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.about-me-text {
+	flex: 1;
+}
+
+.about-me-container h2 {
+	font-size: 2.2rem;
+	color: var(--text-color);
+	font-family: 'Bebas Neue', sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	margin-bottom: 3rem;
+}
+
+.about-me-container p {
+	font-size: 1.6rem;
+	color: var(--text-color);
+	font-family: 'Open Sans', sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
+	font-variation-settings: 'wdth' 100;
+	max-width: 80rem;
+	line-height: 1.5;
+}
+
+/* blob */
+.blob-container {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.blob {
+	background-image: url('../assets/belen_corvalan.jpeg');
+	width: 30rem;
+	height: 30rem;
+	background-size: cover;
+	-webkit-background-position: center;
+	background-position: center center;
+	margin: 20px;
+	box-shadow: 0 5px 5px 5px rgba(48, 62, 156, 0.2);
+	animation: animate 5s ease-in-out infinite;
+	transition: all 1s ease-in-out;
+}
+
+@keyframes animate {
+	0%,
+	100% {
+		border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+	}
+	50% {
+		border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+	}
+}
+
+/*Toggle Switch*/
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 5rem;
+	height: 2rem;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: '';
+	height: 1.2rem;
+	width: 1.4rem;
+	left: 0.4rem;
+	bottom: 0.4rem;
+	background-color: white;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+input:checked + .slider {
+	background-color: #2196f3;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 0.1rem #2196f3;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 3.4rem;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+
+
+.favorite-technologies-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.favorite-technologies-container h2 {
+    font-size: 2.2rem;
+    color: var(--text-color);
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 3rem;
+}
+
+.technology-card-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.technology-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: var(--background-color);
+    box-shadow: 0 5px 5px 5px rgba(48, 62, 156, 0.2);
+    border-radius: 1rem;
+    transition: all 1s ease-in-out;
+}
+
+.technology-card p {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    font-family: 'Open Sans', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: 'wdth' 100;
+    max-width: 20rem;
+    line-height: 1.5;
+
+}
+
+.technology-card i.fa-node-js{
+    color: #68a063;
+    font-size: 5rem;
+
+}
+
+.technology-card i.fa-react{
+    color: #61dafb;
+    font-size: 5rem;
+}
+
+.technology-card i.fa-database {
+    color: #00758f;
+    font-size: 5rem;
+}
+
+/*My Favorite Activities*/
+.favorite-activities-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.favorite-activities-container h2 {
+    font-size: 2.2rem;
+    color: var(--text-color);
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 3rem;
+
+}
+
+.favorite-activites-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.favorite-activites-form div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.favorite-activites-form label {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    font-family: 'Open Sans', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: 'wdth' 100;
+}
+
+.favorite-activites-form input {
+    font-size: 1.6rem;
+    font-family: 'Open Sans', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: 'wdth' 100;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--text-color);
+    width: 20rem;
+    transition: all 1s ease-in-out;
+}
+
+.favorite-activites-form button {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    font-family: 'Open Sans', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: 'wdth' 100;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--text-color);
+    width: 20rem;
+    transition: all 1s ease-in-out;
+    background-color: var(--background-color);
+    cursor: pointer;
+}
+
+.favorite-activites-form button:hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+}
+
+.favorite-activites-form textarea {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    font-family: 'Open Sans', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: 'wdth' 100;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--text-color);
+    width: 20rem;
+    transition: all 1s ease-in-out;
+
+}
+
+.favorite-activities-container h2 {
+    font-size: 2.2rem;
+    color: var(--text-color);
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 3rem;
+
+}
+
+/*Footer*/
+footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem 4rem;
+	background-color: var(--background-color);
+	flex-direction: row;
+}
+
+footer .social-links a {
+	color: var(--text-color);
+	text-decoration: none;
+	background-color: transparent;
+	-webkit-text-decoration-skip: objects;
+	list-style: none;
+	font-size: 1.4rem;
+	font-family: 'Open Sans', sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
+	font-variation-settings: 'wdth' 100;
+}
+
+footer i.fa-linkedin {
+	color: #0a66c2;
+	font-size: 24px;
+	margin-right: 8px;
+}
+
+footer i.fa-youtube {
+    color: #ff0000;
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+footer i.fa-medium {
+    color: #00ab6c;
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+@media (max-width: 80rem) {
+    .about-me-container{
+        flex-direction: column;
+    }
+  }
