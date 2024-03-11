@@ -1,121 +1,89 @@
+const favoriteActivitiesForm = document.querySelector(
+	'#favorite-activities-form'
+)
+const activitiesContainer = document.querySelector('#activitiesContainer')
+const activityTitle = document.querySelector('#activityTitle')
+const activityDescription = document.querySelector('#activityDescription')
+const activityImageUrl = document.querySelector('#activityImageUrl')
 
-document.getElementById("theme-toggle").addEventListener('change', function() {
-    document.body.classList.toggle("dark-theme")
-})
-
-// HomeWork 1 
-
-/* class Activity {
-    constructor(id, title, description, imgUrl){
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.imgUrl = imgUrl
-    }
-
-}
-
-class Repository{
-    constructor(){
-        this.activities = [];
-    }
-
-   getAllActivities() {
-        return this.activities;
-    }
-
-    createActivity(id, title, description, imgUrl){
-        const newActivity = new Activity(id, title, description, imgUrl)
-        this.activities.push(newActivity)
-    }
-
-}
-
-const cart1 = new Repository()
-
-cart1.createActivity(1, "Soccer", "You need a ball, 11 players, and 2 soccer goals.", "soccerImgUrl")
-
-console.log(cart1.getAllActivities())  */
-
-// Fancy Way 
-
+// Definition of the Activity class
 class Activity {
-    #id;
-    #title;
-    #description;
-    #imgUrl;
-
-    constructor(id, title, description, imgUrl) {
-        this.#id = id;
-        this.#title = title;
-        this.#description = description;
-        this.#imgUrl = imgUrl;
-    }
-
-    // Getters
-    getId() {
-        return this.#id;
-    }
-
-    getTitle() {
-        return this.#title;
-    }
-
-    getDescription() {
-        return this.#description;
-    }
-
-    getImgUrl() {
-        return this.#imgUrl;
-    }
-
-    // Setters
-    setTitle(title) {
-        this.#title = title;
-    }
-
-    setDescription(description) {
-        this.#description = description;
-    }
-
-    setImgUrl(imgUrl) {
-        this.#imgUrl = imgUrl;
-    }
+	constructor(title, description, imgUrl) {
+		this.title = title
+		this.description = description
+		this.imgUrl = imgUrl
+	}
 }
 
+// Definition of the Repository class
 class Repository {
-    #activities;
+	constructor() {
+		this.activities = []
+		this.nextId = 0
+	}
 
-    constructor() {
-        this.#activities = [];
-    }
+	getAllActivities() {
+		return this.activities
+	}
 
-    getAllActivities() {
-        return this.#activities;
-    }
+	createActivity(title, description, imgUrl) {
+		const newActivity = new Activity(title, description, imgUrl)
+		this.activities.push({ ...newActivity, id: this.nextId++ })
+	}
 
-    createActivity(id, title, description, imgUrl) {
-        const newActivity = new Activity(id, title, description, imgUrl);
-        this.#activities.push(newActivity);
-    }
-
-    deleteActivity(id) {
-        this.#activities = this.#activities.filter(activity => activity.id !== id);
-    }
+	deleteActivity(id) {
+		this.activities = this.activities.filter((activity) => activity.id !== id)
+	}
 }
 
+const repository = new Repository()
 
-const repository = new Repository();
+// Improvement in the submit function
+const submitForm = (event) => {
+	event.preventDefault()
+	repository.createActivity(
+		activityTitle.value,
+		activityDescription.value,
+		activityImageUrl.value
+	)
+	updateActivitiesUI()
+	activityTitle.value = ''
+	activityDescription.value = ''
+	activityImageUrl.value = ''
+}
 
-repository.createActivity(1, "Soccer", "You need a ball, 11 players, and 2 soccer goals.", "soccerImgUrl");
-repository.createActivity(2, "Tennis", "You need a ball, 11 players, and 2 soccer goals.", "soccerImgUrl");
+// Function to update the UI with the activities
+const updateActivitiesUI = () => {
+    activitiesContainer.innerHTML = ''
+	const activities = repository.getAllActivities()
+	// Logic to update the DOM based on activities
+	// For example, you can iterate over 'activities' and add them to 'activitiesContainer'
+	activities.map((activity) => {
+		const activityHTML = `
+            <div class="activity-card" id="activity-${activity.id}">
+                <img class="activity-img" src="${activity.imgUrl}" alt="${activity.title}">
+                <p class="activity-title">${activity.title}</p>
+                <p class="activity-description">${activity.description}</p>
+                <button class="activity-delete" data-id="${activity.id}">Delete</button>
+            </div>
+        `
+        activitiesContainer.innerHTML += activityHTML;
+	})
+}
 
-const activities = repository.getAllActivities();
-
-activities.forEach(activity => {
-    console.log(`ID: ${activity.getId()}, Title: ${activity.getTitle()}, Description: ${activity.getDescription()}, Image URL: ${activity.getImgUrl()}`);
+activitiesContainer.addEventListener('click', function(event) {
+    if (event.target.classList.contains('activity-delete')) {
+        const activityId = event.target.getAttribute('data-id')
+        repository.deleteActivity(Number(activityId))
+        updateActivitiesUI()
+    }
 });
 
+// Event handler for the form submission
+favoriteActivitiesForm.addEventListener('submit', submitForm)
 
-const firstActivity = repository.getAllActivities()[0]
-console.log(activities.length) 
+// Function to toggle the dark theme
+document.querySelector('#theme-toggle').addEventListener('change', () => {
+	document.body.classList.toggle('dark-theme')
+})
+

@@ -53,7 +53,7 @@
         </section>
         <section id="favorite-activities" class="favorite-activities-container">
             <h2>My Favorite Activities</h2>
-            <form class="favorite-activites-form" >
+            <form class="favorite-activities-form" id="favorite-activities-form" >
                 <div>
                     <label for="activityTitle">Title:</label>
                     <input type="text" id="activityTitle" name="activityTitle" required>
@@ -66,9 +66,9 @@
                     <label for="activityImageUrl">Image URL:</label>
                     <input type="url" id="activityImageUrl" name="activityImageUrl" required>
                 </div>
-                <button type="submit">Add Activity</button>
+                <button id="favorite-activities-button" type="submit">Add Activity</button>
             </form>
-            <div id="activitiesContainer">
+            <div class="list-of-activities" id="activitiesContainer">
                 <!-- Activities cards will be displayed here -->
             </div>
         </section>
