@@ -6,6 +6,7 @@ const activityTitle = document.querySelector('#activityTitle')
 const activityDescription = document.querySelector('#activityDescription')
 const activityImageUrl = document.querySelector('#activityImageUrl')
 
+
 // Definition of the Activity class
 class Activity {
 	constructor(title, description, imgUrl) {
@@ -62,7 +63,7 @@ const updateActivitiesUI = () => {
 		const activityHTML = `
             <div class="activity-card" id="activity-${activity.id}">
                 <img class="activity-img" src="${activity.imgUrl}" alt="${activity.title}">
-                <p class="activity-title">${activity.title}</p>
+                <h3 class="activity-title">${activity.title}</h3>
                 <p class="activity-description">${activity.description}</p>
                 <button class="activity-delete" data-id="${activity.id}">Delete</button>
             </div>
