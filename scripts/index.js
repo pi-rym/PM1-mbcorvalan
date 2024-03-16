@@ -10,11 +10,15 @@ const repository = new Repository();
 
 const submitForm = (event) => {
     event.preventDefault();
-    repository.createActivity(
-        activityTitle.value,
-        activityDescription.value,
-        activityImageUrl.value
-    );
+    if(activityTitle.value && activityDescription.value && activityImageUrl.value){
+        repository.createActivity(
+            activityTitle.value,
+            activityDescription.value,
+            activityImageUrl.value
+        )
+    }else {
+      return alert("Ingresa datos validos")   
+    }
     updateActivitiesUI();
     activityTitle.value = '';
     activityDescription.value = '';

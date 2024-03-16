@@ -12,7 +12,7 @@ export class Repository {
     }
 
     createActivity(title, description, imgUrl) {
-        const newActivity = new Activity(title, description, imgUrl);
+        const newActivity = new Activity(this.nextId++, title, description, imgUrl);
         this.activities.push({ ...newActivity, id: this.nextId++ });
     }
 
