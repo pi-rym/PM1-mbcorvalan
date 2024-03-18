@@ -1,51 +1,20 @@
+import { Repository } from './Repository.js';
+
 const favoriteActivitiesForm = document.querySelector('#favorite-activities-form');
 const activitiesContainer = document.querySelector('#activitiesContainer');
 const activityTitle = document.querySelector('#activityTitle');
 const activityDescription = document.querySelector('#activityDescription');
 const activityImageUrl = document.querySelector('#activityImageUrl');
-class Activity {
-    constructor(id, title, description, imgUrl) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.imgUrl = imgUrl;
-    }
-}
-
-class Repository {
-    constructor() {
-        this.activities = [];
-        this.nextId = 0;
-    }
-
-    getAllActivities() {
-        return this.activities;
-    }
-
-    createActivity(title, description, imgUrl) {
-        const newActivity = new Activity(this.nextId++, title, description, imgUrl);
-        this.activities.push({ ...newActivity });
-    }
-
-    deleteActivity(id) {
-        this.activities = this.activities.filter(activity => activity.id !== id);
-    }
-}
-
 
 const repository = new Repository();
 
 const submitForm = (event) => {
     event.preventDefault();
-    if(activityTitle.value && activityDescription.value && activityImageUrl.value){
-        repository.createActivity(
-            activityTitle.value,
-            activityDescription.value,
-            activityImageUrl.value
-        )
-    }else {
-      return alert("Ingresa datos validos")   
-    }
+    repository.createActivity(
+        activityTitle.value,
+        activityDescription.value,
+        activityImageUrl.value
+    );
     updateActivitiesUI();
     activityTitle.value = '';
     activityDescription.value = '';

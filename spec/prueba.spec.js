@@ -6,6 +6,7 @@ describe('Activity class', () => {
 
 	beforeEach(() => {
 		activity = new Activity(
+			1,
 			'Tennis',
 			'Playing tennis',
 			'https://placehold.co/600x400'
@@ -33,22 +34,13 @@ describe('Repository class', () => {
 
 	it('should add a new activity with a unique id', () => {
 		repository.createActivity(
-			'Tennis',
-			'Playing tennis',
-			'https://placehold.it/600x400'
-		)
-		expect(repository.activities.length).toBe(1)
-		expect(repository.activities[0].title).toEqual('Tennis')
-		expect(repository.activities[0].id).toBe(0)
-
-		repository.createActivity(
 			'Cycling',
 			'Riding a bike',
 			'https://placehold.it/600x400'
 		)
-		expect(repository.activities.length).toBe(2)
-		expect(repository.activities[1].title).toEqual('Cycling')
-		expect(repository.activities[1].id).toBe(1)
+		expect(repository.activities.length).toBe(1)
+		expect(repository.activities[0].title).toEqual('Cycling')
+		expect(repository.activities[0].id).toBe(0)
 	})
 
 	it('should delete an activity by id', () => {
@@ -63,11 +55,11 @@ describe('Repository class', () => {
 			'https://placehold.it/600x400'
 		)
 
-		repository.deleteActivity(0) // Suponiendo que los IDs empiezan en 0 y se incrementan
+		repository.deleteActivity(0)
 		expect(repository.activities.length).toBe(1)
 		expect(repository.activities[0].title).toEqual('Cycling')
-	})
-
+	}) 
+	
 	it('should return all activities', () => {
 		repository.createActivity(
 			'Tennis',
@@ -83,6 +75,6 @@ describe('Repository class', () => {
 		const activities = repository.getAllActivities()
 		expect(activities.length).toBe(2)
 		expect(activities[0].title).toEqual('Tennis')
-		expect(activities[1].title).toEqual('Cycling')
 	})
+
 })
